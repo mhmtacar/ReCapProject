@@ -5,9 +5,21 @@ using Entities.Concrete;
 
 CarManager carManager = new CarManager(new EfCarDal());
 
-foreach (var car in carManager.GetCarDetails())
+var result = carManager.GetCarDetails();
+
+if (result.Success == true)
 {
-    Console.WriteLine("Car Name: {0}  Brand Name: {1}  Color Name: {2}",car.CarName, car.BrandName, car.ColorName);
+    foreach (var car in result.Data)
+    {
+
+        Console.WriteLine(car.CarName + " / " + car.BrandName + " / " + car.ColorName);
+
+    }
+}
+
+else
+{
+    Console.WriteLine(result.Message);
 }
 
 
