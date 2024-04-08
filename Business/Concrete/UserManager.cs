@@ -37,7 +37,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<User>>(_userdal.GetAll(), UserMessages.UserListed);
         }
 
-        public IDataResult<User> GetById(int userId)
+        public IDataResult<User> GetUserById(int userId)
         {
             return new SuccessDataResult<User>(_userdal.Get(c => c.UserId == userId), UserMessages.UserGetById);
         }
