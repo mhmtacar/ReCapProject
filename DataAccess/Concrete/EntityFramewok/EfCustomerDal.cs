@@ -17,7 +17,7 @@ namespace DataAccess.Concrete.EntityFramewok
             using (ReCapContext context = new ReCapContext())
             {
                 var result = from c in context.Customers
-                             join u in context.Users
+                             join u in context.Users2
                              on c.UserId equals u.UserId
                              select new CustomerDetailDto
                              {

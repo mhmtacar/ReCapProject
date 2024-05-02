@@ -43,7 +43,7 @@ namespace Business.Concrete
             carImage.ImageDate = DateTime.Now;
 
             _carImageDal.Add(carImage);
-            return new SuccessResult(CarImageMessages.ImageAdded);
+            return new SuccessResult(Messages.ImageAdded);
 
         }
 
@@ -54,13 +54,13 @@ namespace Business.Concrete
             //then we delete the in dataBase.
             _carImageDal.Delete(carImage);
 
-            return new SuccessResult(CarImageMessages.CarImageDeleted);
+            return new SuccessResult(Messages.CarImageDeleted);
 
         }
 
         public IDataResult<CarImage> GetById(int id)
         {
-            return new SuccessDataResult<CarImage>(_carImageDal.Get(i => i.CarImageId == id), CarImageMessages.ImagesListedById);
+            return new SuccessDataResult<CarImage>(_carImageDal.Get(i => i.CarImageId == id), Messages.ImagesListedById);
 
         }
 
@@ -74,11 +74,11 @@ namespace Business.Concrete
             //Then Update the Database ImageFilePath
             _carImageDal.Update(carImage);
             //everything Success result messages
-            return new SuccessResult(CarImageMessages.ImageUpdated);
+            return new SuccessResult(Messages.ImageUpdated);
         }
         public IDataResult<List<CarImage>> GetAll()
         {
-            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(), CarImageMessages.ImagesListed);
+            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(), Messages.ImagesListed);
         }
 
         public IDataResult<List<CarImage>> GetImagesByCarId(int id)
@@ -89,7 +89,7 @@ namespace Business.Concrete
                 return new ErrorDataResult<List<CarImage>>(GetDefaultImage(id).Data);
             }
 
-            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(c => c.CarId == id), CarImageMessages.ImagesListedByCarId);
+            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(c => c.CarId == id), Messages.ImagesListedByCarId);
         }
 
         //ImageLimit can not more 5 photos...
@@ -98,7 +98,7 @@ namespace Business.Concrete
             var result = _carImageDal.GetAll(i => i.CarId == carId).Count;
             if (result >= 5)
             {
-                return new ErrorResult(CarImageMessages.CarImageLimitReached);
+                return new ErrorResult(Messages.CarImageLimitReached);
             }
             return new SuccessResult();
 
@@ -110,7 +110,7 @@ namespace Business.Concrete
 
             if (result == 0)
             {
-                return new ErrorResult(CarImageMessages.CarImageNotFound);
+                return new ErrorResult(Messages.CarImageNotFound);
             }
             return new SuccessResult();
 

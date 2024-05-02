@@ -22,7 +22,7 @@ namespace DataAccess.Concrete.EntityFramewok
                              on r.CarId equals car.CarId
                              join c in context.Customers
                              on r.CustomerId equals c.CustomerId
-                             join u in context.Users
+                             join u in context.Users2
                              on c.UserId equals u.UserId
 
                              select new RentalDetailDto
